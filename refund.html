@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pharmacy Ecommerce Home</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css" />
+    <link rel="stylesheet" href="dist/css/custom.css" />
+    <link rel="stylesheet" href="plugins/splidejs/splide.min.css" />
+  </head>
+  <body class="hold-transition sidebar-mini layout-fixed">
+     <!-- cart order -->
+     <div class="place-order bg-white">
+      <div class="container py-3 px-3">
+        <form>
+          <!-- cart header -->
+          <div class="row text-dark d-flex justify-content-between">
+            <div class="col-4 align-items-center">
+              <h4 class="mb-0 font-weight-bold">Cart</h4>
+            </div>
+            <div
+              class="col-4 mr-2 d-flex justify-content-end align-items-center trash"
+            >
+              <p class="mr-4 mb-0">
+                <i class="fas fa-archive mr-1"></i>Clear All
+              </p>
+              <span id="closeCart"> <i class="fas fa-times"></i> </span>
+            </div>
+          </div>
+          <!-- cart menu -->
+          <div class="card w-100 mt-3">
+            <div class="card-body py-1">
+              <div class="row text-dark place-menu">
+                <div class="col-3 d-flex flex-column justify-content-center">
+                  <i class="fas fa-map-marked-alt map"></i>
+                  <span class="">Home</span>
+                </div>
+                <div class="col-5 d-flex flex-column justify-content-center">
+                  <h6 class="mb-0 font-weight-bold">Name</h6>
+                  <p class="mb-0">+880123 456 7890</p>
+                  <p class="mb-0">Location</p>
+                </div>
+                <div class="col-4 d-flex align-items-center">
+                  <select name="" id="">
+                    <option value="" selected disabled>Change</option>
+                    <option value="">Dhaka</option>
+                    <option value="">Chittagong</option>
+                    <option value="">Sylhet</option>
+                    <option value="">Khulna</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- cart-checkout -->
+          <div class="cart-checkout" id="cart-checkout">
+            <ul class="row order-item mb-5 p-1" id="buyItems">
+              <h4 class="empty">Your shopping cart is empty</h4>
+
+              <!-- <div class="col-3 item-img">
+            <img src="dist/img/napa.png" alt="">
+          </div>
+          <div class="col-5 item-text">
+            <h6 class="font-weight-bold">Napa 600</h6>
+            <p class="text-muted mb-0">3 each X 2</p>
+            <div class="count">
+              <button onclick="increment()">+</button>  
+              <span id="counting">0</span>
+              <button onclick="decrement()">-</button> 
+            </div>
+          </div>
+          <div class="col-4 item-cost text-right">
+            <p class="mb-0 font-weight-bold">$ 20.60</p>
+            <p class="text-muted"><del>$ 00.00</del></p>
+          </div> -->
+            </ul>
+            <!-- total amount -->
+            <div class="row amount px-2">
+              <!-- Add Coupon -->
+              <div class="row my-4 add-coupon px-2">
+                <label for="coupon" class="">Have a Coupon? Apply here</label
+                ><i class="fas fa-level-down-alt"></i>
+                <div class="coupon w-100 d-flex justify-content-between">
+                  <input type="text" id="discount-input" class="" />
+                  <p
+                    id="coupon-apply"
+                    class="py-2 mb-0 btn btn-sm bg-blue2 w-25 text-white font-weight-bold"
+                  >
+                    Apply
+                  </p>
+                </div>
+              </div>
+              <!-- Coupon End -->
+              <div class="col-6">
+                <p>Subtotal</p>
+                <p>Discount applied</p>
+                <p>Delivery Charge</p>
+                <p><small>Amount Payable</small></p>
+              </div>
+              <div class="col-6 text-right">
+                <p class="sum-prices text-blue2 font-weight-bold"></p>
+                <p>৳ <small class="discount">00.00</small></p>
+                <p>৳ <small class="d-charge">50.00</small></p>
+                <p>৳ <small class="pay-amount">100.00</small></p>
+              </div>
+              <hr class="w-100" />
+              <div class="row w-100 px-2">
+                <div class="col-6">
+                  <p>Grand Total</p>
+                </div>
+                <div class="col-6 text-right">
+                  <p class="mr-n3 total text-blue2 font-weight-bold">$ 000.0</p>
+                </div>
+              </div>
+            </div>
+            <!-- total amount end -->
+            <p
+              class="text-uppercase btn text-center py-2 rounded bg-blue2 w-100 mt-4 font-weight-bold checkout hidden"
+              id="checkout"
+            ></p>
+            <button class="contract_btn mt-5" type="submit" style="width: 100%">
+              proceed to checkout
+            </button>
+          </div>
+          <!-- cart-checkout End -->
+
+          <!-- cart place order -->
+          <div class="cart-place-order d-none" id="cart-place-order">
+            <!-- cart text -->
+            <div class="card w-100">
+              <div class="card-body p-1">
+                <div class="row text">
+                  <div class="col-12">
+                    <textarea
+                      class="w-100"
+                      name=""
+                      id=""
+                      rows="4"
+                      placeholder="Write here any additional info"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- payment option -->
+            <div class="card w-100 payment">
+              <div class="card-body px-2 p-2">
+                <h5 class="font-weight-bold">Payment Option</h5>
+                <div class="row pb-1 mt-3">
+                  <div class="col-12 cash d-flex align-items-center">
+                    <input type="radio" />
+                    <span class="ml-2">Cash on delivery</span>
+                  </div>
+                  <div class="col-12 pay mt-2 d-flex align-items-center">
+                    <input type="radio" />
+                    <img
+                      class="ml-2"
+                      src="dist/img/credit/payment.png"
+                      alt="card option"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- terms and policy -->
+            <div class="row terms-item mb-5">
+              <p class="mb-0">
+                *<span>Estimated Delivery Time for Dhaka 12-48 Hours</span>
+              </p>
+              <p class="">
+                *<span>Estimated Delivery Time for Outside Dhaka 1-5 Days</span>
+              </p>
+              <div class="terms d-flex align-items-center">
+                <input type="checkbox" name="agree" id="agree" />
+                <label for="agree"
+                  >I agree to <small>Terms & Conditions Privacy</small> &
+                  <small>Refund Return Policy</small></label
+                >
+              </div>
+            </div>
+            <hr />
+            <!-- total amount -->
+            <div class="row amount px-2">
+              <div class="col-6">
+                <p>Subtotal</p>
+                <p>Discount applied</p>
+                <p>Delivery Charge</p>
+                <p><small>Amount Payable</small></p>
+              </div>
+              <div class="col-6 text-right">
+                <p class="sum-prices text-blue2 font-weight-bold"></p>
+                <p>৳ <small class="discount">00.00</small></p>
+                <p>৳ <small class="d-charge">50.00</small></p>
+                <p>৳ <small class="pay-amount">100.00</small></p>
+              </div>
+            </div>
+            <hr />
+            <div class="row amount px-2">
+              <div class="col-6">
+                <p>Grand Total</p>
+              </div>
+              <div class="col-6 text-right">
+                <p class="total text-blue2 font-weight-bold">$ 000.0</p>
+              </div>
+            </div>
+            <!--total amount End-->
+            <p
+              class="text-uppercase text-center btn py-2 rounded bg-blue2 w-100 text-white mt-4 font-weight-bold"
+              id="cart-place-order-btn"
+            >
+              place order
+            </p>
+          </div>
+          <!-- cart place order End -->
+
+          <!-- delivery Address -->
+          <div class="customer d-none" id="customer-div">
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="row">
+                  <h4 class="mb-4 font-weight-bold">Add Shipping Address</h4>
+                  <!-- customer name -->
+                  <div class="form-group w-100">
+                    <label for="customer_name" class="text-muted"
+                      >First name *</label
+                    >
+                    <input
+                      type="text"
+                      id="customer_name"
+                      name="customer_name"
+                      class="form-control"
+                      placeholder="Enter your first and last name*"
+                    />
+                  </div>
+                  <!-- customer phone -->
+                  <div class="form-group w-100">
+                    <label for="customer_phone" class="text-muted"
+                      >Phone *</label
+                    >
+                    <input
+                      type="text"
+                      id="customer_phone"
+                      name="customer_phone"
+                      class="form-control"
+                      placeholder="Please enter your phone number*"
+                    />
+                  </div>
+                  <!-- customer city -->
+                  <div class="form-group w-100">
+                    <label for="customer_city" class="text-muted">
+                      City *</label
+                    >
+                    <select
+                      name="customer_city"
+                      id="customer_city"
+                      class="form-control text-muted"
+                    >
+                      <option value="" selected disabled>
+                        Please choose your city
+                      </option>
+                      <option value="">Dhaka</option>
+                      <option value="">Chittagong</option>
+                      <option value="">Sylhet</option>
+                    </select>
+                  </div>
+                  <!-- customer area -->
+                  <div class="form-group w-100">
+                    <label for="customer_area" class="text-muted">Area *</label>
+                    <select
+                      name="customer_area"
+                      id="customer_area"
+                      class="form-control text-muted"
+                    >
+                      <option value="" selected disabled>
+                        Please choose your city
+                      </option>
+                      <option value="">Sutrapur</option>
+                      <option value="">Dhanmondi</option>
+                      <option value="">Gulshan</option>
+                    </select>
+                  </div>
+                  <!-- customer_address -->
+                  <div class="form-group w-100">
+                    <label for="customer_addr" class="text-muted"
+                      >Address *</label
+                    >
+                    <input
+                      type="text"
+                      id="customer_addr"
+                      name="customer_addr"
+                      class="form-control"
+                      placeholder="For Example: House#123, Street#123, ABC Road*"
+                    />
+                  </div>
+                  <!-- label -->
+                  <div class="form-group w-100">
+                    <label for="label" class="text-muted"
+                      >Select a label for effective delivery:</label
+                    >
+                    <select
+                      name="label"
+                      id="label"
+                      class="form-control text-muted"
+                    >
+                      <option value="" selected disabled>
+                        Please choose your effective delivery
+                      </option>
+                      <option value="">Home</option>
+                      <option value="">Office</option>
+                      <option value="">Home Town</option>
+                    </select>
+                  </div>
+                  <!-- notes -->
+                  <div class="form-group w-100">
+                    <label for="notes" class="text-muted"
+                      >Order notes (optional)</label
+                    >
+                    <textarea
+                      name="notes"
+                      id="notes"
+                      rows="3"
+                      class="form-control"
+                      placeholder="Notes about your order, e.g special notes for delivery"
+                    ></textarea>
+                  </div>
+                  <button
+                    type="button"
+                    class="text-uppercase btn bg-blue2 text-white w-100"
+                    id="customer-btn"
+                  >
+                    confirm
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Delivery Address End-->
+        </form>
+      </div>
+      <!--container End  -->
+    </div>
+    <!-- cart order End -->
+
+    <!-- header ad start -->
+    <div class="container-fluid nav-head py-1 bg-blue2 text-white">
+      <div class="row mt-1">
+        <div
+          class="d-flex justify-content-between w-100 px-lg-4"
+          style="font-size: 1.2rem"
+        >
+          <p class="mb-0 text-blue2">
+            Free Shopping with minimum purchase $50.
+          </p>
+          <div class="header-social-icon">
+            <a href="" class="text-white"
+              ><i class="fab fa-facebook-square"></i
+            ></a>
+            <a href="" class="text-white"
+              ><i class="fab fa-twitter-square"></i
+            ></a>
+            <a href="" class="text-white"
+              ><i class="fab fa-instagram-square"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgb(255, 255, 255)"></div>
+    <!-- header ad End -->
+
+    <!-- main Nav start and nav mid section-->
+    <div class="container-fluid nav-mid bg-blue2 nav_sm">
+      <div class="row align-items-center px-3">
+        <!-- logo -->
+        <div class="col-md-2">
+          <div class="d-flex justify-content-center">
+            <a href="index.html" class="brand-wrap" data-abc="true">
+              <!-- <img class="logo w-50 img-fluid" src="assets/img/icon.png"> -->
+              <h2 class="text-white">Pharmacy</h2>
+            </a>
+          </div>
+        </div>
+        <!-- search product -->
+        <div class="col-md-7">
+          <form class="">
+            <div class="search-container mt-2">
+              <input
+                type="text"
+                name="search"
+                placeholder="Search..."
+                class="search-input"
+              />
+              <a href="#" class="search-btn">
+                <iconify-icon class="fas" icon="uil:search"></iconify-icon>
+              </a>
+            </div>
+          </form>
+        </div>
+        <!-- sign in/profile/cart -->
+        <div class="col-md-3 mt-3">
+          <div class="d-flex justify-content-around">
+            <button class="log_btn">
+              <a href="login.html" class="text-dark"> LOG IN </a>
+            </button>
+
+            <button class="log_btn" style="width: 140px">
+              <a href="register.html" class="text-dark">REGISTRATION</a>
+            </button>
+            <!-- call icon -->
+            <a
+              href="index.html"
+              class="nav-link text-white call"
+              title="call to order"
+            >
+              <i class="fas fa-phone-volume"></i>
+            </a>
+            <!-- favorite icon -->
+            <!-- <a class="nav-link nav-user-img text-white" href="#">
+              <span class="login">
+                <i class="far fa-heart"></i>
+              </span>
+            </a> -->
+            <!-- cart Icon -->
+            <a
+              class="nav-link nav-user-img text-white user-cart"
+              style="cursor: pointer"
+            >
+              <span class="login badge bg-warning">
+                <i class="fas fa-cart-plus"></i>
+              </span>
+              <!-- total prices class of all product  -->
+              <small id="sum-prices"> </small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- main Nav end-->
+
+    <div class="wrapper">
+     <!--bottom Navbar -->
+     <div
+     class="main-header navbar navbar-expand bg-blue2 nav-bottom"
+     style="margin-left: 0"
+   >
+     <!-- Left navbar links -->
+     <ul class="navbar-nav">
+       <li class="nav-item">
+         <a
+           class="nav-link text-white"
+           data-widget="pushmenu"
+           href="#"
+           role="button"
+           ><i class="fas fa-bars"></i
+         ></a>
+       </li>
+     </ul>
+
+     <!-- Right navbar links -->
+   </div>
+   <!-- /.navbar -->
+
+   <!-- Main Sidebar Container -->
+   <aside
+     class="main-sidebar main-sidebar-custom sidebar-light-primary elevation-4"
+     style="margin-top: 18px"
+     ;
+   >
+     <!-- Sidebar -->
+     <div
+       class="sidebar m-0 p-0"
+       style="
+         background-color: #ffffff;
+         height: 100%;
+         box-shadow: rgb(221 221 221) 0px 0px 7px 1px;
+       "
+     >
+       <!-- SidebarSearch Form -->
+
+       <div class="m-0 p-0" style="background-color: #072f54">
+         <a
+           class="nav-link text-center text-white"
+           data-widget="pushmenu"
+           href="#"
+           role="button"
+           style="font-size: 1.5rem"
+         >
+           <p class="text-blue2 font-weight-bold">Category</p>
+         </a>
+       </div>
+
+       <!-- Sidebar Menu -->
+       <nav class="mt-2">
+         <ul
+           class="nav nav-pills nav-sidebar flex-column"
+           data-widget="treeview"
+           role="menu"
+           data-accordion="false"
+         >
+           <li class="nav-item menu-is-opening menu-open">
+             <a href="#" class="nav-link">
+               <i class="nav-icon fas fa-edit"></i>
+               <p>
+                 Dress
+                 <i class="fas fa-angle-left right"></i>
+               </p>
+             </a>
+             <ul class="nav nav-treeview" style="display: block">
+               <li class="nav-item">
+                 <a href="pages/forms/general.html" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>General Elements</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="pages/forms/advanced.html" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Advanced Elements</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="pages/forms/editors.html" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Editors</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="pages/forms/validation.html" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Validation</p>
+                 </a>
+               </li>
+             </ul>
+           </li>
+           <li class="nav-item d-none call-item">
+             <a href="index.html" class="nav-link">
+               <i class="fas fa-phone-volume text-blue2"></i>
+               <p class="text-blue2">Call to order</p>
+             </a>
+           </li>
+           <li class="nav-item d-none health-item">
+             <a href="index.html" class="nav-link">
+               <i class="fas fa-heart text-blue2" aria-hidden="true"></i>
+               <p class="text-blue2">Healthcare Products</p>
+             </a>
+           </li>
+           <li class="nav-item">
+             <a href="../widgets.html" class="nav-link">
+               <i class="nav-icon fas fa-th"></i>
+               <p class="text-blue2">Baby and mom</p>
+             </a>
+           </li>
+           <li class="nav-item">
+             <a href="../widgets.html" class="nav-link">
+               <i class="nav-icon fas fa-th"></i>
+               <p class="text-blue2">
+                 Electronics
+                 <span class="right badge badge-danger">New</span>
+               </p>
+             </a>
+           </li>
+           <li class="nav-item">
+             <a href="../widgets.html" class="nav-link">
+               <i class="nav-icon fas fa-th"></i>
+               <p class="text-blue2">Others</p>
+             </a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link">
+               <i class="nav-icon fas fa-upload text-black"></i>
+               <p class="text-blue2">
+                 <label
+                   class="file-input__label"
+                   for="file-input"
+                   style="cursor: pointer"
+                   ><span>&nbsp; Upload Prescription</span></label
+                 >
+                 <input
+                   type="file"
+                   name="file-input"
+                   id="file-input"
+                   class="file-input__input"
+                   style="display: none"
+                 />
+               </p>
+             </a>
+           </li>
+           <li class="nav-item health-2">
+             <a href="index.html" class="nav-link">
+               <i class="nav-icon fas fa-heart text-blue2"></i>
+               <p class="text-blue2">Healthcare Products</p>
+             </a>
+           </li>
+         </ul>
+       </nav>
+       <!-- /.sidebar-menu -->
+     </div>
+   </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <section class="content">
+          <div class="container-fluid">
+            <!-- product image details -->
+            <div class="container">
+           <div class="policy py-5">
+            <style>
+              [data-custom-class='body'], [data-custom-class='body'] * {
+                      background: transparent !important;
+                    }
+            [data-custom-class='title'], [data-custom-class='title'] * {
+                      font-family: Arial !important;
+            font-size: 19px !important;
+            color: #000000 !important;
+                    }
+            [data-custom-class='subtitle'], [data-custom-class='subtitle'] * {
+                      font-family: Arial !important;
+            color: #595959 !important;
+            font-size: 14px !important;
+                    }
+            [data-custom-class='heading_1'], [data-custom-class='heading_1'] * {
+                      font-family: Arial !important;
+            font-size: 19px !important;
+            color: #000000 !important;
+                    }
+            [data-custom-class='heading_2'], [data-custom-class='heading_2'] * {
+                      font-family: Arial !important;
+            font-size: 17px !important;
+            color: #000000 !important;
+                    }
+            [data-custom-class='body_text'], [data-custom-class='body_text'] * {
+                      color: #595959 !important;
+            font-size: 14px !important;
+            font-family: Arial !important;
+                    }
+            [data-custom-class='link'], [data-custom-class='link'] * {
+                      color: #3030F1 !important;
+            font-size: 14px !important;
+            font-family: Arial !important;
+            word-break: break-word !important;
+                    }
+            </style>
+            
+                  <div data-custom-class="body">
+                  <div><div align="center" class="MsoNormal" style="text-align:center;line-height:115%;"><a name="_2cipo4yr3w5d"></a><div align="center" class="MsoNormal" style="text-align: left; line-height: 150%;"><strong><span style="font-size: 26px;"><span data-custom-class="title">RETURN POLICY</span></span></strong></div><div align="center" class="MsoNormal" style="text-align: left; line-height: 150%;"><br></div><div align="center" class="MsoNormal" style="text-align: left; line-height: 150%;"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><strong><span data-custom-class="subtitle">Last updated <bdt class="question">December 27, 2022</bdt></span></strong></span></span></div><div align="center" class="MsoNormal" style="text-align: left; line-height: 150%;"><br></div><div align="center" class="MsoNormal" style="text-align: left; line-height: 150%;"><span style="font-size: 15px;"><br><a name="_2cipo4yr3w5d"></a></span></div></div><div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px; line-height: 115%; font-family: Arial; color: rgb(89, 89, 89);"><bdt class="block-component"></bdt>Thank you for your purchase. We hope you are happy with your purchase. However, if you are not completely satisfied with your purchase for any reason, you may return it to us for <bdt class="block-container if" data-type="if" id="03b751bb-5eee-5230-df87-d0707fec3124"><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="policy_type" data-type="statement"></bdt><bdt data-type="body">a full refund only</bdt></bdt><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="policy_type" data-type="statement"></bdt></bdt>. Please see below for more information on our return policy.</span></div></div><div style="line-height: 1.5;"><br></div><div><div class="MsoNormal" data-custom-class="heading_1" style="line-height: 115%;"><a name="_iwimutmowezb"></a><strong><span style="line-height: 115%; font-family: Arial; font-size: 19px;">RETURNS</span></strong></div></div><div style="line-height: 1.5;"><br></div><div><div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px; line-height: 115%; font-family: Arial; color: rgb(89, 89, 89);">All returns must be postmarked within <bdt class="block-container question question-in-editor" data-id="10b33c27-be1f-aeda-7ea3-7c1f52ee6130" data-type="question">ten (10)</bdt> days of the purchase date. All returned items must be in new and unused condition, with all original tags and labels attached.</span></div></div><div style="line-height: 1.5;"><br></div><div><div class="MsoNormal" data-custom-class="heading_1" style="line-height: 1.5;"><a name="_16t1v96tankw"></a><strong><span style="line-height: 115%; font-family: Arial; font-size: 19px;">RETURN PROCESS</span></strong></div></div><div style="line-height: 1.5;"><br></div><div><div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px; line-height: 115%; font-family: Arial; color: rgb(89, 89, 89);">To return an item, <bdt class="block-container if" data-type="if" id="51c4b423-789c-79e6-4161-743acb653a2d"><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="authorization_option" data-type="statement"></bdt><bdt data-type="body">please email customer service at <bdt class="block-container question question-in-editor" data-id="0b78538e-7550-6c62-669a-d2eb2ed0eafb" data-type="question">mahamudoffice1@gmail.com</bdt> to obtain a Return Merchandise <bdt class="block-component"></bdt>Authorization<bdt class="statement-end-if-in-editor"></bdt> (RMA) number. After receiving a RMA number, </bdt></bdt><bdt class="statement-end-if-in-editor" data-type="close"></bdt></bdt>place the item securely in its original packaging<bdt class="block-container if" data-type="if" id="903ce2af-7990-07ea-2615-36e36315d483"><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="return_inlcude_option" data-type="statement"></bdt><bdt data-type="body">, and</bdt></bdt><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="null" data-type="statement"></bdt></bdt> mail your return to the following address:</span></div><div class="MsoNormal" style="line-height: 1.1;"><span style="font-size: 15px;"><span style="line-height: 115%; font-family: Arial; color: rgb(89, 89, 89);"><br></span></span></div><div class="MsoNormal" data-custom-class="body_text" style="line-height: 115%;"><span style="font-size: 15px;"><span style="line-height: 115%; font-family: Arial; color: rgb(89, 89, 89);"><bdt class="block-container question question-in-editor" data-id="49265208-ebd3-4d63-5ecb-9fcda064a7d5" data-type="question"><a href="https://albariexpress.com" target="_blank" data-custom-class="link">https://albariexpress.com</a></bdt><br></span></span></div><div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px;"><span style="line-height: 115%; font-family: Arial; color: rgb(89, 89, 89);">Attn: Returns</span></span></div><div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px;"><span style="line-height: 115%; font-family: Arial; color: rgb(89, 89, 89);"><bdt class="block-container if" data-type="if" id="2e485380-f516-a019-540b-f82bd718b0df"><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="authorization_option" data-type="statement"></bdt><bdt data-type="body">RMA #</bdt></bdt><bdt class="statement-end-if-in-editor" data-type="close"></bdt></bdt></span></span></div><div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><bdt class="block-container question question-in-editor" data-id="22673e85-8c82-1948-b0e9-b16dd7c6f007" data-type="question">Malibag</bdt></span></span><bdt class="block-component"></bdt></div><div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px;"><span style="line-height: 115%; font-family: Arial; color: rgb(89, 89, 89);"><bdt class="block-container question question-in-editor" data-id="765d45c0-0386-b367-b58a-832b154c7ee8" data-type="question">Dhaka</bdt>, <bdt class="block-component"></bdt><bdt class="block-component"></bdt><bdt class="question">Rampura</bdt><bdt class="statement-end-if-in-editor"></bdt><bdt class="statement-end-if-in-editor"></bdt> <bdt class="block-container question question-in-editor" data-id="85b0476b-4b2d-4b3d-060f-fc67c287cbe7" data-type="question">1219</bdt><bdt class="block-component"></bdt><bdt class="block-component"></bdt></span></span></div><div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px;"><span style="line-height: 115%; font-family: Arial; color: rgb(89, 89, 89);"><bdt class="question">Bangladesh</bdt><bdt class="statement-end-if-in-editor"></bdt><bdt class="statement-end-if-in-editor"></bdt></span></span></div></div><div style="line-height: 1.1;"><br></div><div><div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px; line-height: 115%; font-family: Arial; color: rgb(89, 89, 89);"><bdt class="block-container if" data-type="if" id="b7518b5d-84c0-c06e-ad97-c7421eb67b0b"><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="shipping_fee_option" data-type="statement"></bdt></bdt><bdt class="block-container if" data-type="if" id="d3f0beb2-1468-a072-da09-6936c6e877e2"><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="shipping_fee_option" data-type="statement"></bdt></bdt><bdt class="block-container if" data-type="if" id="48a0f62a-d42f-f443-061d-cbbf93b49154"><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="shipping_fee_option" data-type="statement"></bdt><bdt data-type="body">Return shipping charges will be paid or reimbursed by us. </bdt></bdt><bdt class="statement-end-if-in-editor" data-type="close"></bdt></bdt><bdt class="block-container if" data-type="if" id="ac6ab4e0-da32-a003-8324-04d8b43cb50c"><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="shipping_fee_option" data-type="statement"></bdt></bdt></span></div><div class="MsoNormal" style="line-height: 1.5;"><br></div><div class="MsoNormal" data-custom-class="heading_1" style="line-height: 1.5;"><a name="_qxq7t4ufn5pr"></a><strong><span style="line-height: 115%; font-family: Arial; font-size: 19px;">REFUNDS</span></strong></div><div class="MsoNormal" style="line-height: 115%;"><a name="_kcap2nw8xg2p"></a></div><div class="MsoNormal" style="line-height: 1.5;"><br></div><div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px; line-height: 115%; font-family: Arial; color: rgb(89, 89, 89);">After receiving your return and inspecting the condition of your item, we will process your <bdt class="block-container if" data-type="if" id="4c11860e-4346-687b-5cb3-3727f319e194"><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="policy_type" data-type="statement"></bdt><bdt data-type="body">return</bdt></bdt><bdt class="statement-end-if-in-editor" data-type="close"></bdt></bdt>. Please allow at least <bdt class="block-container question question-in-editor" data-id="ab10b1ab-f4a1-256f-29ae-65257d891371" data-type="question">ten (10)</bdt> days from the receipt of your item to process your <bdt class="block-container if" data-type="if" id="4c11860e-4346-687b-5cb3-3727f319e194" style="font-size: 14.6667px;"><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="policy_type" data-type="statement"></bdt><bdt data-type="body">return</bdt></bdt><bdt class="statement-end-if-in-editor" data-type="close"></bdt></bdt>.<bdt class="block-container if" data-type="if" id="16f989a0-873e-9d7c-70f2-1c4b9cc7ecc4"><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="policy_type" data-type="statement"></bdt><bdt data-type="body"> Refunds may take 1-2 billing cycles to appear on your credit card statement, depending on your credit card company.</bdt></bdt><bdt class="statement-end-if-in-editor" data-type="close"></bdt></bdt><bdt class="block-container if" data-type="if" id="b49c01dc-6b19-275b-5996-06e6aeaaf917"><bdt data-type="conditional-block"><bdt class="block-component" data-record-question-key="customer_notification_option" data-type="statement"></bdt><bdt data-type="body"> We will notify you by email when your return has been processed.</bdt></bdt></bdt><bdt class="block-container if" data-type="if" id="b49c01dc-6b19-275b-5996-06e6aeaaf917"><bdt class="statement-end-if-in-editor" data-type="close"></bdt></bdt></span></div><div class="MsoNormal" style="line-height: 115%;"><a name="_gjdgxs"></a></div><div class="MsoNormal" style="line-height: 1.5;"><br></div><div class="MsoNormal" data-custom-class="heading_1" style="line-height: 1.5;"><a name="_33ujiidflcnn"></a><strong><span style="line-height: 115%; font-family: Arial; font-size: 19px;">EXCEPTIONS</span></strong><span style="font-size: 15px;"><bdt class="block-component"></bdt><bdt class="block-component"></bdt></span></div><div data-custom-class="body_text" data-empty="true" style="line-height: 1.1;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><br></span></span></div><div data-custom-class="body_text" style="line-height: 1.5;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;">For defective or damaged products, please contact us at the contact details below to arrange a refund or exchange.</span></span></div><div data-custom-class="body_text" data-empty="true" style="line-height: 1.5;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><bdt class="block-component"></bdt></span></span><span style="font-size: 15px;"><bdt class="block-component"><span style="color: rgb(89, 89, 89);"></bdt></span><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><bdt class="block-component"></bdt><bdt class="block-component"></bdt></span></div><div style="line-height: 1.5;"><br></div><div data-custom-class="heading_1" style="line-height: 1.5;"><span style="font-size: 19px; color: rgb(0, 0, 0);"><strong>QUESTIONS</strong></span></div><div style="line-height: 1.5;"><br></div><div data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);">If you have any questions concerning our return policy, please contact us at:</span></div><div data-custom-class="body_text" style="line-height: 1.1;"><br></div><div data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px;"><bdt class="block-component"></bdt></span></div><div data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px;"><bdt class="question"><span style="color: rgb(89, 89, 89);">01790092928</span></bdt><span style="color: rgb(89, 89, 89);"><bdt class="statement-end-if-in-editor"></bdt></span></span></div><div data-custom-class="body_text" style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><bdt class="question">mahamudoffice1@gmail.com</bdt></span></div><style>
+                  ul {
+                    list-style-type: square;
+                  }
+                  ul > li > ul {
+                    list-style-type: circle;
+                  }
+                  ul > li > ul > li > ul {
+                    list-style-type: square;
+                  }
+                  ol li {
+                    font-family: Arial ;
+                  }
+                </style>
+                  </div>
+                  <div style="color: #595959;font-size: 14px;font-family: Arial;padding-top:16px;">
+                  This return policy was created using Termly's <a style="color: rgb(48, 48, 241) !important;" href="https://termly.io/products/refund-return-policy-generator/">Return and Refund Policy Generator</a>.
+                  </div>
+           </div>
+           </div>
+            </div>
+            <div class="row align-items-center newsletter_section" style="margin-top: 120px;">
+              <div class="col col-lg-6">
+                <h2 class="newsletter_title text-white">
+                  Sign Up for Newsletter
+                </h2>
+                <p>
+                  Get E-mail updates about our latest products and special
+                  offers.
+                </p>
+              </div>
+              <div class="col col-lg-6">
+                <form action="">
+                  <div class="newsletter_form">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Enter your email address"
+                    />
+                    <button type="submit" class="btn bg-warning">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- newsletter section end -->
+          </div>
+        </section>
+      </div>
+      <!-- /.content-wrapper -->
+
+      <footer class="main-footer py-lg-5" style="color: #072f54">
+        <div class="row mt-4">
+          <div class="col-md-2">
+            <h5 class="">information</h5>
+            <ul>
+              <li>
+                <a href="about-us.html">About us</a>
+              </li>
+              <li>
+                <a href="contact-us.html">Contact us</a>
+              </li>
+              <li>
+                <a href="about-us.html">About team</a>
+              </li>
+              <li>
+                <a href="contact-us.html">Customer Support</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2">
+            <h5>Categories</h5>
+            <ul>
+              <li>
+                <a href="#">Categories</a>
+              </li>
+              <li>
+                <a href="#">Family Care</a>
+              </li>
+              <li>
+                <a href="#">Fitness</a>
+              </li>
+              <li>
+                <a href="#">Lifestyle</a>
+              </li>
+              <li>
+                <a href="#">Personal Care</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5>Our Information</h5>
+            <ul>
+              <li>
+                <a href="policy.html">privacy policy update</a>
+              </li>
+              <li>
+                <a href="terms.html">terms & conditions</a>
+              </li>
+              <li>
+                <a href="refund.html">return policy</a>
+              </li>
+              <li>
+                <a href="#">site map</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5 class="">Contact us</h5>
+            <p>Address 101/B Chowdhurypara</p>
+            <p>Malibagh, Dhaka 1219</p>
+            <p>Hot Line 01810-117100</p>
+            <!-- <p>Social Links</p> -->
+            <div class="header-social-icon">
+              Social Links
+              <a href="" class="pl-2"><i class="fab fa-facebook-square"></i></a>
+              <a href="" class="pl-2"><i class="fab fa-twitter-square"></i></a>
+              <a href="" class="pl-2"
+                ><i class="fab fa-instagram-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <h5>Download app</h5>
+            <img
+              class="img-fluid my-2 footer_app_img"
+              src="dist/img/credit/app_store.png"
+              alt="app_store"
+            />
+            <img
+              class="img-fluid footer_app_img"
+              src="dist/img/credit/play_store.png"
+              alt="play-store"
+            />
+          </div>
+        </div>
+      </footer>
+      <div
+        class="container-fluid footer-bottom py-2"
+style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px"
+        style="background-color: unset"
+      >
+        <div class="row footer_sm_p">
+          <p class="mb-0 text-center" style="color: black">
+            &copy2022 <span class="text-red">E-commarce.</span>All Rights
+            Reserved.
+          </p>
+
+          <div class="text-center ml-lg-5">
+            <img
+              src="dist/img/credit/payment.png"
+              alt="payment"
+              title="payment"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- footer mini end -->
+    </div>
+    <!-- ./wrapper end -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- custom -->
+    <script src="dist/js/custom.js"></script>
+    <!-- splideJS -->
+    <script src="plugins/splidejs/splide.min.js"></script>
+    <script src="plugins/splidejs/splide-extension-auto-scroll.min.js"></script>
+
+    <!-- <script type="text/javscript">
+
+</script> -->
+  </body>
+</html>

@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pharmacy Ecommerce Home</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css" />
+    <link rel="stylesheet" href="dist/css/custom.css" />
+    <link rel="stylesheet" href="plugins/splidejs/splide.min.css" />
+  </head>
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <!-- cart order -->
+    <div class="place-order bg-white">
+      <div class="container py-3 px-3">
+        <form>
+          <!-- cart header -->
+          <div class="row text-dark d-flex justify-content-between">
+            <div class="col-4 align-items-center">
+              <h4 class="mb-0 font-weight-bold">Cart</h4>
+            </div>
+            <div
+              class="col-4 mr-2 d-flex justify-content-end align-items-center trash"
+            >
+              <p class="mr-4 mb-0">
+                <i class="fas fa-archive mr-1"></i>Clear All
+              </p>
+              <span id="closeCart"> <i class="fas fa-times"></i> </span>
+            </div>
+          </div>
+          <!-- cart menu -->
+          <div class="card w-100 mt-3">
+            <div class="card-body py-1">
+              <div class="row text-dark place-menu">
+                <div class="col-3 d-flex flex-column justify-content-center">
+                  <i class="fas fa-map-marked-alt map"></i>
+                  <span class="">Home</span>
+                </div>
+                <div class="col-5 d-flex flex-column justify-content-center">
+                  <h6 class="mb-0 font-weight-bold">Name</h6>
+                  <p class="mb-0">+880123 456 7890</p>
+                  <p class="mb-0">Location</p>
+                </div>
+                <div class="col-4 d-flex align-items-center">
+                  <select name="" id="">
+                    <option value="" selected disabled>Change</option>
+                    <option value="">Dhaka</option>
+                    <option value="">Chittagong</option>
+                    <option value="">Sylhet</option>
+                    <option value="">Khulna</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- cart-checkout -->
+          <div class="cart-checkout" id="cart-checkout">
+            <ul class="row order-item mb-5 p-1" id="buyItems">
+              <h4 class="empty">Your shopping cart is empty</h4>
+
+              <!-- <div class="col-3 item-img">
+            <img src="dist/img/napa.png" alt="">
+          </div>
+          <div class="col-5 item-text">
+            <h6 class="font-weight-bold">Napa 600</h6>
+            <p class="text-muted mb-0">3 each X 2</p>
+            <div class="count">
+              <button onclick="increment()">+</button>  
+              <span id="counting">0</span>
+              <button onclick="decrement()">-</button> 
+            </div>
+          </div>
+          <div class="col-4 item-cost text-right">
+            <p class="mb-0 font-weight-bold">$ 20.60</p>
+            <p class="text-muted"><del>$ 00.00</del></p>
+          </div> -->
+            </ul>
+            <!-- total amount -->
+            <div class="row amount px-2">
+              <!-- Add Coupon -->
+              <div class="row my-4 add-coupon px-2">
+                <label for="coupon" class="">Have a Coupon? Apply here</label
+                ><i class="fas fa-level-down-alt"></i>
+                <div class="coupon w-100 d-flex justify-content-between">
+                  <input type="text" id="discount-input" class="" />
+                  <p
+                    id="coupon-apply"
+                    class="py-2 mb-0 btn btn-sm bg-blue2 w-25 text-white font-weight-bold"
+                  >
+                    Apply
+                  </p>
+                </div>
+              </div>
+              <!-- Coupon End -->
+              <div class="col-6">
+                <p>Subtotal</p>
+                <p>Discount applied</p>
+                <p>Delivery Charge</p>
+                <p><small>Amount Payable</small></p>
+              </div>
+              <div class="col-6 text-right">
+                <p class="sum-prices text-blue2 font-weight-bold"></p>
+                <p>৳ <small class="discount">00.00</small></p>
+                <p>৳ <small class="d-charge">50.00</small></p>
+                <p>৳ <small class="pay-amount">100.00</small></p>
+              </div>
+              <hr class="w-100" />
+              <div class="row w-100 px-2">
+                <div class="col-6">
+                  <p>Grand Total</p>
+                </div>
+                <div class="col-6 text-right">
+                  <p class="mr-n3 total text-blue2 font-weight-bold">$ 000.0</p>
+                </div>
+              </div>
+            </div>
+            <!-- total amount end -->
+            <p
+              class="text-uppercase btn text-center py-2 rounded bg-blue2 w-100 mt-4 font-weight-bold checkout hidden"
+              id="checkout"
+            ></p>
+            <button class="contract_btn mt-5" type="submit" style="width: 100%">
+              proceed to checkout
+            </button>
+          </div>
+          <!-- cart-checkout End -->
+
+          <!-- cart place order -->
+          <div class="cart-place-order d-none" id="cart-place-order">
+            <!-- cart text -->
+            <div class="card w-100">
+              <div class="card-body p-1">
+                <div class="row text">
+                  <div class="col-12">
+                    <textarea
+                      class="w-100"
+                      name=""
+                      id=""
+                      rows="4"
+                      placeholder="Write here any additional info"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- payment option -->
+            <div class="card w-100 payment">
+              <div class="card-body px-2 p-2">
+                <h5 class="font-weight-bold">Payment Option</h5>
+                <div class="row pb-1 mt-3">
+                  <div class="col-12 cash d-flex align-items-center">
+                    <input type="radio" />
+                    <span class="ml-2">Cash on delivery</span>
+                  </div>
+                  <div class="col-12 pay mt-2 d-flex align-items-center">
+                    <input type="radio" />
+                    <img
+                      class="ml-2"
+                      src="dist/img/credit/payment.png"
+                      alt="card option"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- terms and policy -->
+            <div class="row terms-item mb-5">
+              <p class="mb-0">
+                *<span>Estimated Delivery Time for Dhaka 12-48 Hours</span>
+              </p>
+              <p class="">
+                *<span>Estimated Delivery Time for Outside Dhaka 1-5 Days</span>
+              </p>
+              <div class="terms d-flex align-items-center">
+                <input type="checkbox" name="agree" id="agree" />
+                <label for="agree"
+                  >I agree to <small>Terms & Conditions Privacy</small> &
+                  <small>Refund Return Policy</small></label
+                >
+              </div>
+            </div>
+            <hr />
+            <!-- total amount -->
+            <div class="row amount px-2">
+              <div class="col-6">
+                <p>Subtotal</p>
+                <p>Discount applied</p>
+                <p>Delivery Charge</p>
+                <p><small>Amount Payable</small></p>
+              </div>
+              <div class="col-6 text-right">
+                <p class="sum-prices text-blue2 font-weight-bold"></p>
+                <p>৳ <small class="discount">00.00</small></p>
+                <p>৳ <small class="d-charge">50.00</small></p>
+                <p>৳ <small class="pay-amount">100.00</small></p>
+              </div>
+            </div>
+            <hr />
+            <div class="row amount px-2">
+              <div class="col-6">
+                <p>Grand Total</p>
+              </div>
+              <div class="col-6 text-right">
+                <p class="total text-blue2 font-weight-bold">$ 000.0</p>
+              </div>
+            </div>
+            <!--total amount End-->
+            <p
+              class="text-uppercase text-center btn py-2 rounded bg-blue2 w-100 text-white mt-4 font-weight-bold"
+              id="cart-place-order-btn"
+            >
+              place order
+            </p>
+          </div>
+          <!-- cart place order End -->
+
+          <!-- delivery Address -->
+          <div class="customer d-none" id="customer-div">
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="row">
+                  <h4 class="mb-4 font-weight-bold">Add Shipping Address</h4>
+                  <!-- customer name -->
+                  <div class="form-group w-100">
+                    <label for="customer_name" class="text-muted"
+                      >First name *</label
+                    >
+                    <input
+                      type="text"
+                      id="customer_name"
+                      name="customer_name"
+                      class="form-control"
+                      placeholder="Enter your first and last name*"
+                    />
+                  </div>
+                  <!-- customer phone -->
+                  <div class="form-group w-100">
+                    <label for="customer_phone" class="text-muted"
+                      >Phone *</label
+                    >
+                    <input
+                      type="text"
+                      id="customer_phone"
+                      name="customer_phone"
+                      class="form-control"
+                      placeholder="Please enter your phone number*"
+                    />
+                  </div>
+                  <!-- customer city -->
+                  <div class="form-group w-100">
+                    <label for="customer_city" class="text-muted">
+                      City *</label
+                    >
+                    <select
+                      name="customer_city"
+                      id="customer_city"
+                      class="form-control text-muted"
+                    >
+                      <option value="" selected disabled>
+                        Please choose your city
+                      </option>
+                      <option value="">Dhaka</option>
+                      <option value="">Chittagong</option>
+                      <option value="">Sylhet</option>
+                    </select>
+                  </div>
+                  <!-- customer area -->
+                  <div class="form-group w-100">
+                    <label for="customer_area" class="text-muted">Area *</label>
+                    <select
+                      name="customer_area"
+                      id="customer_area"
+                      class="form-control text-muted"
+                    >
+                      <option value="" selected disabled>
+                        Please choose your city
+                      </option>
+                      <option value="">Sutrapur</option>
+                      <option value="">Dhanmondi</option>
+                      <option value="">Gulshan</option>
+                    </select>
+                  </div>
+                  <!-- customer_address -->
+                  <div class="form-group w-100">
+                    <label for="customer_addr" class="text-muted"
+                      >Address *</label
+                    >
+                    <input
+                      type="text"
+                      id="customer_addr"
+                      name="customer_addr"
+                      class="form-control"
+                      placeholder="For Example: House#123, Street#123, ABC Road*"
+                    />
+                  </div>
+                  <!-- label -->
+                  <div class="form-group w-100">
+                    <label for="label" class="text-muted"
+                      >Select a label for effective delivery:</label
+                    >
+                    <select
+                      name="label"
+                      id="label"
+                      class="form-control text-muted"
+                    >
+                      <option value="" selected disabled>
+                        Please choose your effective delivery
+                      </option>
+                      <option value="">Home</option>
+                      <option value="">Office</option>
+                      <option value="">Home Town</option>
+                    </select>
+                  </div>
+                  <!-- notes -->
+                  <div class="form-group w-100">
+                    <label for="notes" class="text-muted"
+                      >Order notes (optional)</label
+                    >
+                    <textarea
+                      name="notes"
+                      id="notes"
+                      rows="3"
+                      class="form-control"
+                      placeholder="Notes about your order, e.g special notes for delivery"
+                    ></textarea>
+                  </div>
+                  <button
+                    type="button"
+                    class="text-uppercase btn bg-blue2 text-white w-100"
+                    id="customer-btn"
+                  >
+                    confirm
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Delivery Address End-->
+        </form>
+      </div>
+      <!--container End  -->
+    </div>
+    <!-- cart order End -->
+
+    <!-- header ad start -->
+    <div class="container-fluid nav-head py-1 bg-blue2 text-white">
+      <div class="row mt-1">
+        <div
+          class="d-flex justify-content-between w-100 px-lg-4"
+          style="font-size: 1.2rem"
+        >
+          <p class="mb-0 text-blue2">
+            Free Shopping with minimum purchase $50.
+          </p>
+          <div class="header-social-icon">
+            <a href="" class="text-white"
+              ><i class="fab fa-facebook-square"></i
+            ></a>
+            <a href="" class="text-white"
+              ><i class="fab fa-twitter-square"></i
+            ></a>
+            <a href="" class="text-white"
+              ><i class="fab fa-instagram-square"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgb(255, 255, 255)"></div>
+    <!-- header ad End -->
+
+    <!-- main Nav start and nav mid section-->
+    <div class="container-fluid nav-mid bg-blue2 nav_sm">
+      <div class="row align-items-center px-3">
+        <!-- logo -->
+        <div class="col-md-2">
+          <div class="d-flex justify-content-center">
+            <a href="index.html" class="brand-wrap" data-abc="true">
+              <!-- <img class="logo w-50 img-fluid" src="assets/img/icon.png"> -->
+              <h2 class="text-white">Pharmacy</h2>
+            </a>
+          </div>
+        </div>
+        <!-- search product -->
+        <div class="col-md-7">
+          <form class="">
+            <div class="search-container mt-2">
+              <input
+                type="text"
+                name="search"
+                placeholder="Search..."
+                class="search-input"
+              />
+              <a href="#" class="search-btn">
+                <iconify-icon class="fas" icon="uil:search"></iconify-icon>
+              </a>
+            </div>
+          </form>
+        </div>
+        <!-- sign in/profile/cart -->
+        <div class="col-md-3 mt-3">
+          <div class="d-flex justify-content-around">
+            <button class="log_btn">
+              <a href="login.html" class="text-dark"> LOG IN </a>
+            </button>
+
+            <button class="log_btn" style="width: 140px">
+              <a href="register.html" class="text-dark">REGISTRATION</a>
+            </button>
+            <!-- call icon -->
+            <a
+              href="index.html"
+              class="nav-link text-white call"
+              title="call to order"
+            >
+              <i class="fas fa-phone-volume"></i>
+            </a>
+            <!-- favorite icon -->
+            <!-- <a class="nav-link nav-user-img text-white" href="#">
+              <span class="login">
+                <i class="far fa-heart"></i>
+              </span>
+            </a> -->
+            <!-- cart Icon -->
+            <a
+              class="nav-link nav-user-img text-white user-cart"
+              style="cursor: pointer"
+            >
+              <span class="login badge bg-warning">
+                <i class="fas fa-cart-plus"></i>
+              </span>
+              <!-- total prices class of all product  -->
+              <small id="sum-prices"> </small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- main Nav end-->
+    <div class="wrapper">
+      <!--bottom Navbar -->
+      <div
+        class="main-header navbar navbar-expand bg-blue2 nav-bottom"
+        style="margin-left: 0"
+      >
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a
+              class="nav-link text-white"
+              data-widget="pushmenu"
+              href="#"
+              role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+        </ul>
+
+        <!-- Right navbar links -->
+      </div>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <aside
+        class="main-sidebar main-sidebar-custom sidebar-light-primary elevation-4"
+        style="margin-top: 18px"
+        ;
+      >
+        <!-- Sidebar -->
+        <div
+          class="sidebar m-0 p-0"
+          style="
+            background-color: #ffffff;
+            height: 100%;
+            box-shadow: rgb(221 221 221) 0px 0px 7px 1px;
+          "
+        >
+          <!-- SidebarSearch Form -->
+
+          <div class="m-0 p-0" style="background-color: #072f54">
+            <a
+              class="nav-link text-center text-white"
+              data-widget="pushmenu"
+              href="#"
+              role="button"
+              style="font-size: 1.5rem"
+            >
+              <p class="text-blue2 font-weight-bold">Category</p>
+            </a>
+          </div>
+
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>
+                    Dress
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: block">
+                  <li class="nav-item">
+                    <a href="pages/forms/general.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>General Elements</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/forms/advanced.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Advanced Elements</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/forms/editors.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Editors</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/forms/validation.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Validation</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item d-none call-item">
+                <a href="index.html" class="nav-link">
+                  <i class="fas fa-phone-volume text-blue2"></i>
+                  <p class="text-blue2">Call to order</p>
+                </a>
+              </li>
+              <li class="nav-item d-none health-item">
+                <a href="index.html" class="nav-link">
+                  <i class="fas fa-heart text-blue2" aria-hidden="true"></i>
+                  <p class="text-blue2">Healthcare Products</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../widgets.html" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p class="text-blue2">Baby and mom</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../widgets.html" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p class="text-blue2">
+                    Electronics
+                    <span class="right badge badge-danger">New</span>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../widgets.html" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p class="text-blue2">Others</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">
+                  <i class="nav-icon fas fa-upload text-black"></i>
+                  <p class="text-blue2">
+                    <label
+                      class="file-input__label"
+                      for="file-input"
+                      style="cursor: pointer"
+                      ><span>&nbsp; Upload Prescription</span></label
+                    >
+                    <input
+                      type="file"
+                      name="file-input"
+                      id="file-input"
+                      class="file-input__input"
+                      style="display: none"
+                    />
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item health-2">
+                <a href="index.html" class="nav-link">
+                  <i class="nav-icon fas fa-heart text-blue2"></i>
+                  <p class="text-blue2">Healthcare Products</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <section class="content">
+          <div class="container-fluid">
+            <!-- product image details -->
+            <div class="container">
+              <div class="policy">
+                <h2 class="py-5"><strong>Terms and Conditions</strong></h2>
+
+                <p>Welcome to Albariexpress!</p>
+
+                <p>
+                  These terms and conditions outline the rules and regulations
+                  for the use of Albariexpress's Website, located at
+                  https://albariexpress.com.
+                </p>
+
+                <p>
+                  By accessing this website we assume you accept these terms and
+                  conditions. Do not continue to use Albariexpress if you do not
+                  agree to take all of the terms and conditions stated on this
+                  page.
+                </p>
+
+                <p>
+                  The following terminology applies to these Terms and
+                  Conditions, Privacy Statement and Disclaimer Notice and all
+                  Agreements: "Client", "You" and "Your" refers to you, the
+                  person log on this website and compliant to the Company’s
+                  terms and conditions. "The Company", "Ourselves", "We", "Our"
+                  and "Us", refers to our Company. "Party", "Parties", or "Us",
+                  refers to both the Client and ourselves. All terms refer to
+                  the offer, acceptance and consideration of payment necessary
+                  to undertake the process of our assistance to the Client in
+                  the most appropriate manner for the express purpose of meeting
+                  the Client’s needs in respect of provision of the Company’s
+                  stated services, in accordance with and subject to, prevailing
+                  law of Netherlands. Any use of the above terminology or other
+                  words in the singular, plural, capitalization and/or he/she or
+                  they, are taken as interchangeable and therefore as referring
+                  to same.
+                </p>
+
+                <h3><strong>Cookies</strong></h3>
+
+                <p>
+                  We employ the use of cookies. By accessing Albariexpress, you
+                  agreed to use cookies in agreement with the Albariexpress's
+                  Privacy Policy.
+                </p>
+
+                <p>
+                  Most interactive websites use cookies to let us retrieve the
+                  user’s details for each visit. Cookies are used by our website
+                  to enable the functionality of certain areas to make it easier
+                  for people visiting our website. Some of our
+                  affiliate/advertising partners may also use cookies.
+                </p>
+
+                <h3><strong>License</strong></h3>
+
+                <p>
+                  Unless otherwise stated, Albariexpress and/or its licensors
+                  own the intellectual property rights for all material on
+                  Albariexpress. All intellectual property rights are reserved.
+                  You may access this from Albariexpress for your own personal
+                  use subjected to restrictions set in these terms and
+                  conditions.
+                </p>
+
+                <p>You must not:</p>
+                <ul>
+                  <li>Republish material from Albariexpress</li>
+                  <li>Sell, rent or sub-license material from Albariexpress</li>
+                  <li>
+                    Reproduce, duplicate or copy material from Albariexpress
+                  </li>
+                  <li>Redistribute content from Albariexpress</li>
+                </ul>
+
+                <p>
+                  This Agreement shall begin on the date hereof. Our Terms and
+                  Conditions were created with the help of the
+                  <a href="https://www.termsandconditionsgenerator.com/"
+                    >Free Terms and Conditions Generator</a
+                  >.
+                </p>
+
+                <p>
+                  Parts of this website offer an opportunity for users to post
+                  and exchange opinions and information in certain areas of the
+                  website. Albariexpress does not filter, edit, publish or
+                  review Comments prior to their presence on the website.
+                  Comments do not reflect the views and opinions of
+                  Albariexpress,its agents and/or affiliates. Comments reflect
+                  the views and opinions of the person who post their views and
+                  opinions. To the extent permitted by applicable laws,
+                  Albariexpress shall not be liable for the Comments or for any
+                  liability, damages or expenses caused and/or suffered as a
+                  result of any use of and/or posting of and/or appearance of
+                  the Comments on this website.
+                </p>
+
+                <p>
+                  Albariexpress reserves the right to monitor all Comments and
+                  to remove any Comments which can be considered inappropriate,
+                  offensive or causes breach of these Terms and Conditions.
+                </p>
+
+                <p>You warrant and represent that:</p>
+
+                <ul>
+                  <li>
+                    You are entitled to post the Comments on our website and
+                    have all necessary licenses and consents to do so;
+                  </li>
+                  <li>
+                    The Comments do not invade any intellectual property right,
+                    including without limitation copyright, patent or trademark
+                    of any third party;
+                  </li>
+                  <li>
+                    The Comments do not contain any defamatory, libelous,
+                    offensive, indecent or otherwise unlawful material which is
+                    an invasion of privacy
+                  </li>
+                  <li>
+                    The Comments will not be used to solicit or promote business
+                    or custom or present commercial activities or unlawful
+                    activity.
+                  </li>
+                </ul>
+
+                <p>
+                  You hereby grant Albariexpress a non-exclusive license to use,
+                  reproduce, edit and authorize others to use, reproduce and
+                  edit any of your Comments in any and all forms, formats or
+                  media.
+                </p>
+
+                <h3><strong>Hyperlinking to our Content</strong></h3>
+
+                <p>
+                  The following organizations may link to our Website without
+                  prior written approval:
+                </p>
+
+                <ul>
+                  <li>Government agencies;</li>
+                  <li>Search engines;</li>
+                  <li>News organizations;</li>
+                  <li>
+                    Online directory distributors may link to our Website in the
+                    same manner as they hyperlink to the Websites of other
+                    listed businesses; and
+                  </li>
+                  <li>
+                    System wide Accredited Businesses except soliciting
+                    non-profit organizations, charity shopping malls, and
+                    charity fundraising groups which may not hyperlink to our
+                    Web site.
+                  </li>
+                </ul>
+
+                <p>
+                  These organizations may link to our home page, to publications
+                  or to other Website information so long as the link: (a) is
+                  not in any way deceptive; (b) does not falsely imply
+                  sponsorship, endorsement or approval of the linking party and
+                  its products and/or services; and (c) fits within the context
+                  of the linking party’s site.
+                </p>
+
+                <p>
+                  We may consider and approve other link requests from the
+                  following types of organizations:
+                </p>
+
+                <ul>
+                  <li>
+                    commonly-known consumer and/or business information sources;
+                  </li>
+                  <li>dot.com community sites;</li>
+                  <li>associations or other groups representing charities;</li>
+                  <li>online directory distributors;</li>
+                  <li>internet portals;</li>
+                  <li>accounting, law and consulting firms; and</li>
+                  <li>educational institutions and trade associations.</li>
+                </ul>
+
+                <p>
+                  We will approve link requests from these organizations if we
+                  decide that: (a) the link would not make us look unfavorably
+                  to ourselves or to our accredited businesses; (b) the
+                  organization does not have any negative records with us; (c)
+                  the benefit to us from the visibility of the hyperlink
+                  compensates the absence of Albariexpress; and (d) the link is
+                  in the context of general resource information.
+                </p>
+
+                <p>
+                  These organizations may link to our home page so long as the
+                  link: (a) is not in any way deceptive; (b) does not falsely
+                  imply sponsorship, endorsement or approval of the linking
+                  party and its products or services; and (c) fits within the
+                  context of the linking party’s site.
+                </p>
+
+                <p>
+                  If you are one of the organizations listed in paragraph 2
+                  above and are interested in linking to our website, you must
+                  inform us by sending an e-mail to Albariexpress. Please
+                  include your name, your organization name, contact information
+                  as well as the URL of your site, a list of any URLs from which
+                  you intend to link to our Website, and a list of the URLs on
+                  our site to which you would like to link. Wait 2-3 weeks for a
+                  response.
+                </p>
+
+                <p>
+                  Approved organizations may hyperlink to our Website as
+                  follows:
+                </p>
+
+                <ul>
+                  <li>By use of our corporate name; or</li>
+                  <li>
+                    By use of the uniform resource locator being linked to; or
+                  </li>
+                  <li>
+                    By use of any other description of our Website being linked
+                    to that makes sense within the context and format of content
+                    on the linking party’s site.
+                  </li>
+                </ul>
+
+                <p>
+                  No use of Albariexpress's logo or other artwork will be
+                  allowed for linking absent a trademark license agreement.
+                </p>
+
+                <h3><strong>iFrames</strong></h3>
+
+                <p>
+                  Without prior approval and written permission, you may not
+                  create frames around our Webpages that alter in any way the
+                  visual presentation or appearance of our Website.
+                </p>
+
+                <h3><strong>Content Liability</strong></h3>
+
+                <p>
+                  We shall not be hold responsible for any content that appears
+                  on your Website. You agree to protect and defend us against
+                  all claims that is rising on your Website. No link(s) should
+                  appear on any Website that may be interpreted as libelous,
+                  obscene or criminal, or which infringes, otherwise violates,
+                  or advocates the infringement or other violation of, any third
+                  party rights.
+                </p>
+
+                <h3><strong>Your Privacy</strong></h3>
+
+                <p>Please read Privacy Policy</p>
+
+                <h3><strong>Reservation of Rights</strong></h3>
+
+                <p>
+                  We reserve the right to request that you remove all links or
+                  any particular link to our Website. You approve to immediately
+                  remove all links to our Website upon request. We also reserve
+                  the right to amen these terms and conditions and it’s linking
+                  policy at any time. By continuously linking to our Website,
+                  you agree to be bound to and follow these linking terms and
+                  conditions.
+                </p>
+
+                <h3><strong>Removal of links from our website</strong></h3>
+
+                <p>
+                  If you find any link on our Website that is offensive for any
+                  reason, you are free to contact and inform us any moment. We
+                  will consider requests to remove links but we are not
+                  obligated to or so or to respond to you directly.
+                </p>
+
+                <p>
+                  We do not ensure that the information on this website is
+                  correct, we do not warrant its completeness or accuracy; nor
+                  do we promise to ensure that the website remains available or
+                  that the material on the website is kept up to date.
+                </p>
+
+                <h3><strong>Disclaimer</strong></h3>
+
+                <p>
+                  To the maximum extent permitted by applicable law, we exclude
+                  all representations, warranties and conditions relating to our
+                  website and the use of this website. Nothing in this
+                  disclaimer will:
+                </p>
+
+                <ul>
+                  <li>
+                    limit or exclude our or your liability for death or personal
+                    injury;
+                  </li>
+                  <li>
+                    limit or exclude our or your liability for fraud or
+                    fraudulent misrepresentation;
+                  </li>
+                  <li>
+                    limit any of our or your liabilities in any way that is not
+                    permitted under applicable law; or
+                  </li>
+                  <li>
+                    exclude any of our or your liabilities that may not be
+                    excluded under applicable law.
+                  </li>
+                </ul>
+
+                <p>
+                  The limitations and prohibitions of liability set in this
+                  Section and elsewhere in this disclaimer: (a) are subject to
+                  the preceding paragraph; and (b) govern all liabilities
+                  arising under the disclaimer, including liabilities arising in
+                  contract, in tort and for breach of statutory duty.
+                </p>
+
+                <p>
+                  As long as the website and the information and services on the
+                  website are provided free of charge, we will not be liable for
+                  any loss or damage of any nature.
+                </p>
+              </div>
+            </div>
+            <div
+              class="row align-items-center newsletter_section"
+              style="margin-top: 120px"
+            >
+              <div class="col col-lg-6">
+                <h2 class="newsletter_title text-white">
+                  Sign Up for Newsletter
+                </h2>
+                <p>
+                  Get E-mail updates about our latest products and special
+                  offers.
+                </p>
+              </div>
+              <div class="col col-lg-6">
+                <form action="">
+                  <div class="newsletter_form">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Enter your email address"
+                    />
+                    <button type="submit" class="btn bg-warning">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- newsletter section end -->
+          </div>
+        </section>
+      </div>
+      <!-- /.content-wrapper -->
+
+      <footer class="main-footer py-lg-5" style="color: #072f54">
+        <div class="row mt-4">
+          <div class="col-md-2">
+            <h5 class="">information</h5>
+            <ul>
+              <li>
+                <a href="about-us.html">About us</a>
+              </li>
+              <li>
+                <a href="contact-us.html">Contact us</a>
+              </li>
+              <li>
+                <a href="about-us.html">About team</a>
+              </li>
+              <li>
+                <a href="contact-us.html">Customer Support</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2">
+            <h5>Categories</h5>
+            <ul>
+              <li>
+                <a href="#">Categories</a>
+              </li>
+              <li>
+                <a href="#">Family Care</a>
+              </li>
+              <li>
+                <a href="#">Fitness</a>
+              </li>
+              <li>
+                <a href="#">Lifestyle</a>
+              </li>
+              <li>
+                <a href="#">Personal Care</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5>Our Information</h5>
+            <ul>
+              <li>
+                <a href="policy.html">privacy policy update</a>
+              </li>
+              <li>
+                <a href="terms.html">terms & conditions</a>
+              </li>
+              <li>
+                <a href="refund.html">return policy</a>
+              </li>
+              <li>
+                <a href="#">site map</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5 class="">Contact us</h5>
+            <p>Address 101/B Chowdhurypara</p>
+            <p>Malibagh, Dhaka 1219</p>
+            <p>Hot Line 01810-117100</p>
+            <!-- <p>Social Links</p> -->
+            <div class="header-social-icon">
+              Social Links
+              <a href="" class="pl-2"><i class="fab fa-facebook-square"></i></a>
+              <a href="" class="pl-2"><i class="fab fa-twitter-square"></i></a>
+              <a href="" class="pl-2"
+                ><i class="fab fa-instagram-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <h5>Download app</h5>
+            <img
+              class="img-fluid my-2 footer_app_img"
+              src="dist/img/credit/app_store.png"
+              alt="app_store"
+            />
+            <img
+              class="img-fluid footer_app_img"
+              src="dist/img/credit/play_store.png"
+              alt="play-store"
+            />
+          </div>
+        </div>
+      </footer>
+      <div
+        class="container-fluid footer-bottom py-2"
+        style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px"
+        style="background-color: unset"
+      >
+        <div class="row footer_sm_p">
+          <p class="mb-0 text-center" style="color: black">
+            &copy2022 <span class="text-red">E-commarce.</span>All Rights
+            Reserved.
+          </p>
+
+          <div class="text-center ml-lg-5">
+            <img
+              src="dist/img/credit/payment.png"
+              alt="payment"
+              title="payment"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- footer mini end -->
+    </div>
+    <!-- ./wrapper end -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- custom -->
+    <script src="dist/js/custom.js"></script>
+    <!-- splideJS -->
+    <script src="plugins/splidejs/splide.min.js"></script>
+    <script src="plugins/splidejs/splide-extension-auto-scroll.min.js"></script>
+
+    <!-- <script type="text/javscript">
+
+</script> -->
+  </body>
+</html>
